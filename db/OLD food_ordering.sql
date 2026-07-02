@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2026 at 08:24 AM
+-- Generation Time: Jun 21, 2026 at 07:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,13 +35,6 @@ CREATE TABLE `cart` (
   `checkout` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `menu_id`, `quantity`, `checkout`) VALUES
-(58, 15, 16, 5, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -63,9 +56,7 @@ CREATE TABLE `codes` (
 --
 
 INSERT INTO `codes` (`id`, `code`, `uses`, `expiry_date`, `discount`, `assigned_user_id`, `restaurant_id`) VALUES
-(14, 'MIshan', 1, '2025-08-08 22:00:00', 10, NULL, NULL),
-(15, 'REWARD-8YGYEN', 1, '2026-07-07 07:55:52', 5, 13, 4),
-(16, 'REWARD-MZ9VPJ', 1, '2026-07-17 07:57:21', 5, 13, 4);
+(14, 'MIshan', 1, '2025-08-08 22:00:00', 10, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -96,17 +87,15 @@ INSERT INTO `code_usages` (`id`, `user_id`, `code_id`, `used_at`) VALUES
 CREATE TABLE `contacts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `message` text NOT NULL,
-  `restaurant_id` int(11) NOT NULL DEFAULT 1
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `user_id`, `message`, `restaurant_id`) VALUES
-(1, 3, 'This is awesome', 1),
-(2, 13, 'this is very nice i like it', 4);
+INSERT INTO `contacts` (`id`, `user_id`, `message`) VALUES
+(1, 3, 'This is awesome');
 
 -- --------------------------------------------------------
 
@@ -156,27 +145,6 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification_thresholds`
---
-
-CREATE TABLE `notification_thresholds` (
-  `id` int(11) NOT NULL,
-  `restaurant_id` int(11) NOT NULL,
-  `threshold` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
-  `expiry_days` int(11) NOT NULL DEFAULT 30
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notification_thresholds`
---
-
-INSERT INTO `notification_thresholds` (`id`, `restaurant_id`, `threshold`, `discount`, `expiry_days`) VALUES
-(1, 4, 1000, 5, 15);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
@@ -192,23 +160,24 @@ CREATE TABLE `orders` (
   `latitude` decimal(10,8) DEFAULT NULL,
   `longitude` decimal(11,8) DEFAULT NULL,
   `distance_km` decimal(6,2) DEFAULT NULL,
-  `estimated_minutes` int(11) DEFAULT NULL,
-  `seen` tinyint(1) NOT NULL DEFAULT 0
+  `estimated_minutes` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `payment_method`, `status`, `created_at`, `restaurant_id`, `latitude`, `longitude`, `distance_km`, `estimated_minutes`, `seen`) VALUES
-(14, 13, 5000.00, 'asdasd', 'cash_on_delivery', 'cancelled', '2026-06-21 06:57:41', 1, NULL, NULL, NULL, NULL, 0),
-(19, 13, 1500.00, 'asd', 'cash_on_delivery', 'cancelled', '2026-06-21 08:46:01', 5, NULL, NULL, NULL, NULL, 0),
-(22, 13, 500.00, 'sdf', 'cash_on_delivery', 'cancelled', '2026-06-21 14:58:42', 5, NULL, NULL, NULL, NULL, 0),
-(23, 13, 1500.00, 'chadai', 'cash_on_delivery', 'cancelled', '2026-06-21 15:02:06', 5, NULL, NULL, NULL, NULL, 0),
-(27, 14, 6800.00, 'here', 'cash_on_delivery', 'pending', '2026-06-21 17:03:25', 4, 27.67794537, 85.37280917, 5.82, 28, 0),
-(28, 13, 2000.00, 'here', 'cash_on_delivery', 'cancelled', '2026-06-22 05:49:15', 4, 27.70172986, 85.33226967, 1.07, 14, 0),
-(29, 13, 3000.00, 'here', 'cash_on_delivery', 'completed', '2026-06-22 05:55:52', 4, 27.74427750, 85.26274681, 7.30, 32, 1),
-(30, 13, 5100.00, 'here', 'cash_on_delivery', 'cancelled', '2026-07-02 05:57:21', 4, 27.72070265, 85.28905392, 3.80, 22, 0);
+INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `payment_method`, `status`, `created_at`, `restaurant_id`, `latitude`, `longitude`, `distance_km`, `estimated_minutes`) VALUES
+(14, 13, 5000.00, 'asdasd', 'cash_on_delivery', 'pending', '2026-06-21 06:57:41', 1, NULL, NULL, NULL, NULL),
+(19, 13, 1500.00, 'asd', 'cash_on_delivery', 'pending', '2026-06-21 08:46:01', 5, NULL, NULL, NULL, NULL),
+(20, 13, 1000.00, 'fast', 'cash_on_delivery', 'completed', '2026-06-21 14:12:25', 4, NULL, NULL, NULL, NULL),
+(21, 13, 2000.00, 'asd', 'cash_on_delivery', 'completed', '2026-06-21 14:50:46', 4, NULL, NULL, NULL, NULL),
+(22, 13, 500.00, 'sdf', 'cash_on_delivery', 'pending', '2026-06-21 14:58:42', 5, NULL, NULL, NULL, NULL),
+(23, 13, 1500.00, 'chadai', 'cash_on_delivery', 'pending', '2026-06-21 15:02:06', 5, NULL, NULL, NULL, NULL),
+(24, 13, 5000.00, 'asd', 'cash_on_delivery', 'pending', '2026-06-21 16:19:09', 4, NULL, NULL, NULL, NULL),
+(25, 13, 4250.00, 'just the road', 'cash_on_delivery', 'pending', '2026-06-21 16:46:58', 4, NULL, NULL, NULL, NULL),
+(26, 13, 1000.00, 'just around the corner', 'cash_on_delivery', 'pending', '2026-06-21 16:54:12', 4, 27.70707310, 85.31985164, 0.59, 12),
+(27, 14, 6800.00, 'here', 'cash_on_delivery', 'completed', '2026-06-21 17:03:25', 4, 27.67794537, 85.37280917, 5.82, 28);
 
 -- --------------------------------------------------------
 
@@ -260,10 +229,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `quantity`, `price`
 (29, 24, 16, 5, 1000.00),
 (30, 25, 16, 5, 1000.00),
 (31, 26, 16, 1, 1000.00),
-(32, 27, 16, 8, 1000.00),
-(33, 28, 16, 2, 1000.00),
-(34, 29, 16, 3, 1000.00),
-(35, 30, 16, 6, 1000.00);
+(32, 27, 16, 8, 1000.00);
 
 -- --------------------------------------------------------
 
@@ -339,8 +305,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `contact`) VALUES
 (11, 'sdfa asdf', 'dasfa2@gmail.com', '$2y$10$Co7u/JKNmhOlwClaiY9Pmu2tUG8u/XI6o33b.MbzKqaPCQ/Hp80p2', '9861359341'),
 (12, 'afsd adsfas', 'mishanshah222@gmail.com', '$2y$10$kxVh7XQC7ZNRMk5u6QXyJebIKpwRo0NFReejDgKtpQ.EaBiUj.fCO', '9812312322'),
 (13, 'suju suju', 'suju@gmail.com', '$2y$10$dMTMfsJchsxnK0idulisLOWWwKHhcDutKRJEIX0SWtVD8anFysn6K', '9841209997'),
-(14, 'aman maharjan', 'amanmaharjan@gmail.com', '$2y$10$EZGbzfDCVTwEsQ2kP1TsdOB9oLuBjR4Cr9888u8bYiZH4dgLW.5qy', '9863222789'),
-(15, 'nibha aunty', 'nibha@gmail.com', '$2y$10$eIIwOGUREZqZ91MIgQjWru2qbK6Tbo5KgHjD33tkJcdaWR6zGSW/q', '9874741471');
+(14, 'aman maharjan', 'amanmaharjan@gmail.com', '$2y$10$EZGbzfDCVTwEsQ2kP1TsdOB9oLuBjR4Cr9888u8bYiZH4dgLW.5qy', '9863222789');
 
 -- --------------------------------------------------------
 
@@ -356,13 +321,6 @@ CREATE TABLE `user_loyalty_progress` (
   `orders_since_last_reward` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `user_loyalty_progress`
---
-
-INSERT INTO `user_loyalty_progress` (`id`, `user_id`, `restaurant_id`, `total_spent_since_last_reward`, `orders_since_last_reward`) VALUES
-(1, 13, 4, 0.00, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -377,14 +335,6 @@ CREATE TABLE `user_notifications` (
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_notifications`
---
-
-INSERT INTO `user_notifications` (`id`, `user_id`, `message`, `code`, `is_read`, `created_at`) VALUES
-(1, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-8YGYEN for 5% off your next order. Valid for 15 days.', 'REWARD-8YGYEN', 1, '2026-06-22 05:55:52'),
-(2, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-MZ9VPJ for 5% off your next order. Valid for 15 days.', 'REWARD-MZ9VPJ', 0, '2026-07-02 05:57:21');
 
 --
 -- Indexes for dumped tables
@@ -431,13 +381,6 @@ ALTER TABLE `loyalty_rules`
 ALTER TABLE `menu_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_restaurant2` (`restaurant_id`);
-
---
--- Indexes for table `notification_thresholds`
---
-ALTER TABLE `notification_thresholds`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `restaurant_id` (`restaurant_id`);
 
 --
 -- Indexes for table `orders`
@@ -493,13 +436,13 @@ ALTER TABLE `user_notifications`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `code_usages`
@@ -511,7 +454,7 @@ ALTER TABLE `code_usages`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `loyalty_rules`
@@ -526,22 +469,16 @@ ALTER TABLE `menu_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `notification_thresholds`
---
-ALTER TABLE `notification_thresholds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
@@ -559,19 +496,19 @@ ALTER TABLE `system_admins`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_loyalty_progress`
 --
 ALTER TABLE `user_loyalty_progress`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_notifications`
 --
 ALTER TABLE `user_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
