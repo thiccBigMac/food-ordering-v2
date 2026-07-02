@@ -1,0 +1,617 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Works in most modern browsers */
+.container {
+    overflow-y: scroll;
+    /* or auto */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+/* Navbar */
+.my-navbar {
+    background-color: #222;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo a {
+    padding: 10px;
+    font-size: xx-large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #DFD0B8;
+    text-decoration: none;
+}
+
+
+.nav-links,
+.nav-links-right {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li,
+.nav-links-right li {
+    padding: 1rem;
+}
+
+.nav-links a,
+.nav-links-right a {
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+
+.nav-links li:hover {
+    opacity: 0.5;
+}
+
+/* Page wrapper to push footer */
+.wrapper {
+    min-height: calc(100vh - 100px);
+    padding-bottom: 100px;
+}
+
+/* Footer */
+footer .footer {
+    background-color: #2E4E50;
+    color: #ecf0f1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .footer p {
+    margin: 0;
+    padding: 10px 0;
+}
+
+footer .footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #3498db;
+}
+
+/* Login Form */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 300px);
+    padding-top: 100px;
+}
+
+.login-box {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-wrapper h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.input-box {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 16px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 3px solid rgba(200, 200, 200, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-box input::placeholder {
+    color: #aaa;
+}
+
+.register-link {
+    margin: 20px 0 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register-link a {
+    text-decoration: none;
+}
+
+.login-wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: black;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+    outline: none;
+}
+
+/* General button hover */
+button:hover,
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Align dropdown on the right */
+ul.nav-links.right {
+    margin-left: auto;
+}
+
+.nav-username {
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-top: 14px;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 9999;
+}
+
+.dropdown-content a {
+    padding: 10px 10px;
+    display: block;
+    font-size: medium;
+    font-family: monospace, sans-serif;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Carousel container: full width and height */
+.carousel {
+    position: relative;
+    width: 100%;
+    /* Full width of the viewport */
+    height: 100vh;
+    /* Full height of the viewport */
+    overflow: hidden;
+    /* Hide content that exceeds the container */
+}
+
+/* Track for slides */
+.carousel-track {
+    display: flex;
+    width: 100%;
+    /* Ensure the track fills the full width */
+    height: 100%;
+    /* Ensure the track fills the full height */
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Individual slide */
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    /* Ensure each slide covers the full height */
+    background-color: black;
+    /* You can replace this with your image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the images inside the slides */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Make sure images fill the entire slide without distortion */
+}
+
+/* Buttons to navigate between slides */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Left arrow button */
+.carousel-btn.prev {
+    left: 20px;
+}
+
+/* Right arrow button */
+.carousel-btn.next {
+    right: 20px;
+}
+
+/* Hover effect on buttons */
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+.menu-item {
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    color: #222;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: scale(1.03);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.menu-item .btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #2E4E50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-container {
+    border: 2px solid black;
+    display: inline-block;
+
+}
+
+.cart-container {
+    background: #fff;
+    padding: 20px;
+    max-width: 700px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+    color: #2E4E50;
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #2E4E50;
+    padding-bottom: 8px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+
+.product-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    margin-right: 15px;
+}
+
+.item-details {
+    flex: 1;
+    color: #222;
+}
+
+.product-name {
+    font-weight: 600;
+    color: #2E4E50;
+    margin-bottom: 4px;
+}
+
+.product-qty,
+.product-price {
+    font-size: 14px;
+    color: #555;
+}
+
+.remove-btn {
+    background: transparent;
+    border: 1px solid #2E4E50;
+    color: #2E4E50;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #2E4E50;
+    color: #fff;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2E4E50;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #2E4E50;
+}
+
+.checkout {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    background-color: #2E4E50;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #1f3638;
+}
+
+/*Feedback Container*/
+
+.feedback-container {
+    margin: 40px auto;
+    width: 60%;
+    max-width: 700px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    color: #2E4E50;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback-container h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #2E4E50;
+    text-align: center;
+}
+
+.feedback-container textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    font-size: 16px;
+    resize: vertical;
+    color: #2E4E50;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+}
+
+.feedback-btn {
+    background-color: #2E4E50;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+}
+
+.feedback-btn:hover {
+    background-color: #1f3638;
+}
+
+/* Reset browser defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f9f9f9;
+    color: #2E4E50;
+    line-height: 1.6;
+}
+
+/* Fix Bootstrap Navbar Padding if needed */
+nav.navbar {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 0 !important;
+}
+
+/* Container for the cart */
+.cart-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Cart table styling */
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table.table th,
+table.table td {
+    padding: 12px 10px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+}
+
+table.table th {
+    background-color: #2E4E50;
+    color: white;
+    font-weight: bold;
+}
+
+table.table img {
+    border-radius: 6px;
+    max-height: 60px;
+    object-fit: cover;
+}
+
+/* Quantity adjustment form */
+form[action="update_quantity.php"] button {
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+}
+
+form[action="update_quantity.php"] span {
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Remove button */
+/* .btn-danger {
+    background-color: #black;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    color: white;
+    transition: background-color 0.3s;
+} */
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Checkout section */
+form[action="checkout.php"] {
+    text-align: right;
+}
+
+.btn-success {
+    background-color: #2E4E50;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #1f3638;
+}
+
+/* Grand total styling in footer row */
+tfoot th {
+    background-color: #f3f3f3;
+    font-size: 18px;
+    color: #2E4E50;
+    text-align: right;
+}
+
+
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .cart-wrapper {
+        padding: 10px;
+    }
+
+    table.table th,
+    table.table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn-success {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+
+}
