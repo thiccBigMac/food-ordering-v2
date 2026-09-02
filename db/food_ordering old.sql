@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2026 at 02:33 PM
+-- Generation Time: Jul 02, 2026 at 08:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,8 +40,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `menu_id`, `quantity`, `checkout`) VALUES
-(58, 15, 16, 5, 0),
-(62, 13, 17, 1, 0);
+(58, 15, 16, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -66,8 +65,7 @@ CREATE TABLE `codes` (
 INSERT INTO `codes` (`id`, `code`, `uses`, `expiry_date`, `discount`, `assigned_user_id`, `restaurant_id`) VALUES
 (14, 'MIshan', 1, '2025-08-08 22:00:00', 10, NULL, NULL),
 (15, 'REWARD-8YGYEN', 1, '2026-07-07 07:55:52', 5, 13, 4),
-(16, 'REWARD-MZ9VPJ', 1, '2026-07-17 07:57:21', 5, 13, 4),
-(17, 'REWARD-PM27G7', 1, '2026-08-17 11:31:01', 5, 13, 4);
+(16, 'REWARD-MZ9VPJ', 1, '2026-07-17 07:57:21', 5, 13, 4);
 
 -- --------------------------------------------------------
 
@@ -210,8 +208,7 @@ INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `shipping_address`, `paym
 (27, 14, 6800.00, 'here', 'cash_on_delivery', 'pending', '2026-06-21 17:03:25', 4, 27.67794537, 85.37280917, 5.82, 28, 0),
 (28, 13, 2000.00, 'here', 'cash_on_delivery', 'cancelled', '2026-06-22 05:49:15', 4, 27.70172986, 85.33226967, 1.07, 14, 0),
 (29, 13, 3000.00, 'here', 'cash_on_delivery', 'completed', '2026-06-22 05:55:52', 4, 27.74427750, 85.26274681, 7.30, 32, 1),
-(30, 13, 5100.00, 'here', 'cash_on_delivery', 'cancelled', '2026-07-02 05:57:21', 4, 27.72070265, 85.28905392, 3.80, 22, 0),
-(31, 13, 5950.00, 'here', 'cash_on_delivery', 'completed', '2026-08-02 09:31:01', 4, 27.85630332, 84.98130798, 37.59, 123, 0);
+(30, 13, 5100.00, 'here', 'cash_on_delivery', 'cancelled', '2026-07-02 05:57:21', 4, 27.72070265, 85.28905392, 3.80, 22, 0);
 
 -- --------------------------------------------------------
 
@@ -266,8 +263,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `quantity`, `price`
 (32, 27, 16, 8, 1000.00),
 (33, 28, 16, 2, 1000.00),
 (34, 29, 16, 3, 1000.00),
-(35, 30, 16, 6, 1000.00),
-(36, 31, 16, 7, 1000.00);
+(35, 30, 16, 6, 1000.00);
 
 -- --------------------------------------------------------
 
@@ -291,22 +287,7 @@ CREATE TABLE `restaurants` (
 
 INSERT INTO `restaurants` (`id`, `username`, `password`, `email`, `image`, `latitude`, `longitude`) VALUES
 (4, 'Pizza Palace', '$2y$10$PyEChHswH6fiPlmDA5NUQutgZfGSIKEq3WlZLzAMlb9nZWRMXLMnq', 'pizza@gmail.com', 'restaurant_6a37f0c7ef7001.97815277.jpg', 27.70915684, 85.32535592),
-(5, 'Burger house', '$2y$10$o65YwxRcmmSsNkhk4XplleUL.Q8qp4SR98dmuUmVSrRDvVb9pQXzq', 'burger@gmail.com', NULL, 27.67138554, 85.31136990);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reviews`
---
-
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `restaurant_id` int(11) NOT NULL,
-  `rating` tinyint(1) NOT NULL,
-  `comment` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(5, 'Burger house', '$2y$10$o65YwxRcmmSsNkhk4XplleUL.Q8qp4SR98dmuUmVSrRDvVb9pQXzq', 'burger@gmail.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -359,8 +340,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `contact`) VALUES
 (12, 'afsd adsfas', 'mishanshah222@gmail.com', '$2y$10$kxVh7XQC7ZNRMk5u6QXyJebIKpwRo0NFReejDgKtpQ.EaBiUj.fCO', '9812312322'),
 (13, 'suju suju', 'suju@gmail.com', '$2y$10$dMTMfsJchsxnK0idulisLOWWwKHhcDutKRJEIX0SWtVD8anFysn6K', '9841209997'),
 (14, 'aman maharjan', 'amanmaharjan@gmail.com', '$2y$10$EZGbzfDCVTwEsQ2kP1TsdOB9oLuBjR4Cr9888u8bYiZH4dgLW.5qy', '9863222789'),
-(15, 'nibha aunty', 'nibha@gmail.com', '$2y$10$eIIwOGUREZqZ91MIgQjWru2qbK6Tbo5KgHjD33tkJcdaWR6zGSW/q', '9874741471'),
-(16, 'simaran murti ', 'simran@gmail.com', '$2y$10$K55hU0n1HcLYdWSdFcuyNu7nhCtGk7adfwCcu6k7hbegjBPAvHURe', '9845466546');
+(15, 'nibha aunty', 'nibha@gmail.com', '$2y$10$eIIwOGUREZqZ91MIgQjWru2qbK6Tbo5KgHjD33tkJcdaWR6zGSW/q', '9874741471');
 
 -- --------------------------------------------------------
 
@@ -404,8 +384,7 @@ CREATE TABLE `user_notifications` (
 
 INSERT INTO `user_notifications` (`id`, `user_id`, `message`, `code`, `is_read`, `created_at`) VALUES
 (1, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-8YGYEN for 5% off your next order. Valid for 15 days.', 'REWARD-8YGYEN', 1, '2026-06-22 05:55:52'),
-(2, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-MZ9VPJ for 5% off your next order. Valid for 15 days.', 'REWARD-MZ9VPJ', 0, '2026-07-02 05:57:21'),
-(3, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-PM27G7 for 5% off your next order. Valid for 15 days.', 'REWARD-PM27G7', 0, '2026-08-02 09:31:01');
+(2, 13, 'You have earned a reward from Pizza Palace! Use code REWARD-MZ9VPJ for 5% off your next order. Valid for 15 days.', 'REWARD-MZ9VPJ', 0, '2026-07-02 05:57:21');
 
 --
 -- Indexes for dumped tables
@@ -479,14 +458,6 @@ ALTER TABLE `restaurants`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_restaurant` (`user_id`,`restaurant_id`),
-  ADD KEY `restaurant_id` (`restaurant_id`);
-
---
 -- Indexes for table `system_admins`
 --
 ALTER TABLE `system_admins`
@@ -522,13 +493,13 @@ ALTER TABLE `user_notifications`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `code_usages`
@@ -564,25 +535,19 @@ ALTER TABLE `notification_thresholds`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
 --
 ALTER TABLE `restaurants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `system_admins`
@@ -594,7 +559,7 @@ ALTER TABLE `system_admins`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user_loyalty_progress`
@@ -606,7 +571,7 @@ ALTER TABLE `user_loyalty_progress`
 -- AUTO_INCREMENT for table `user_notifications`
 --
 ALTER TABLE `user_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -631,13 +596,6 @@ ALTER TABLE `code_usages`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `fk_restaurant2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
