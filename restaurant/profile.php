@@ -65,6 +65,8 @@ $restaurant = $stmt->get_result()->fetch_assoc();
     <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
@@ -115,17 +117,17 @@ $restaurant = $stmt->get_result()->fetch_assoc();
 
                 <?php if ($restaurant['latitude'] && $restaurant['longitude']): ?>
                     <p style="color: green; margin-bottom: 10px;">
-                        ✅ Location set: <?php echo $restaurant['latitude']; ?>, <?php echo $restaurant['longitude']; ?>
+                        Location set: <?php echo $restaurant['latitude']; ?>, <?php echo $restaurant['longitude']; ?>
                     </p>
                 <?php else: ?>
                     <p style="color: #d9534f; margin-bottom: 10px;">
-                        ⚠️ No location set yet. Customers won't see delivery distance/time until you set this.
+                         No location set yet. Customers won't see delivery distance/time until you set this.
                     </p>
                 <?php endif; ?>
 
                 <form method="POST" id="location-form">
                     <div id="map-picker" style="height: 350px; border-radius: 8px; margin-bottom: 10px;"></div>
-                    <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Click on the map to set your restaurant's location.</p>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Click on the map, or use the search box, to set your restaurant's location.</p>
 
                     <input type="hidden" name="latitude" id="latitude">
                     <input type="hidden" name="longitude" id="longitude">
@@ -156,18 +158,32 @@ $restaurant = $stmt->get_result()->fetch_assoc();
             document.getElementById('longitude').value = startLng;
         <?php endif; ?>
 
-        map.on('click', function (e) {
-            const lat = e.latlng.lat;
-            const lng = e.latlng.lng;
-
+        function setLocation(lat, lng) {
             if (marker) {
-                marker.setLatLng(e.latlng);
+                marker.setLatLng([lat, lng]);
             } else {
-                marker = L.marker(e.latlng).addTo(map);
+                marker = L.marker([lat, lng]).addTo(map);
             }
 
             document.getElementById('latitude').value = lat.toFixed(8);
             document.getElementById('longitude').value = lng.toFixed(8);
+        }
+
+        map.on('click', function (e) {
+            setLocation(e.latlng.lat, e.latlng.lng);
+        });
+
+        // Location search bar
+        const geocoder = L.Control.geocoder({
+            defaultMarkGeocode: false,
+            placeholder: "Search for your restaurant's location...",
+            collapsed: false
+        }).addTo(map);
+
+        geocoder.on('markgeocode', function (e) {
+            const center = e.geocode.center;
+            map.setView(center, 16);
+            setLocation(center.lat, center.lng);
         });
     </script>
 

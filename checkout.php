@@ -160,6 +160,8 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <style>
         html, body {
             overflow-y: auto !important;
@@ -246,7 +248,7 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
             </div>
         <?php else: ?>
             <div id="map-picker" style="height: 350px; border-radius: 8px; margin-bottom: 10px;"></div>
-            <p style="font-size: 13px; color: #666;">Click on the map to set your delivery location.</p>
+            <p style="font-size: 13px; color: #666;">Click on the map, or use the search box, to set your delivery location.</p>
 
             <div id="delivery-info"></div>
         <?php endif; ?>
@@ -355,8 +357,8 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
     let customerMarker;
     let routingControl;
 
-    // Draws the actual road path from restaurant -> clicked point,
-    // and pulls real road distance/time from the route (instead of straight-line Haversine)
+    // Draws the actual road path from restaurant -> clicked/searched point,
+    // and pulls real road distance/time from the route
     function updateRoute(lat, lng) {
         if (customerMarker) {
             customerMarker.setLatLng([lat, lng]);
@@ -380,11 +382,11 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
             routeWhileDragging: false,
             addWaypoints: false,
             draggableWaypoints: false,
-            show: false, // hides the turn-by-turn instructions panel
+            show: false,
             lineOptions: {
                 styles: [{ color: '#2E4E50', weight: 5, opacity: 0.8 }]
             },
-            createMarker: function () { return null; } // we manage our own markers above
+            createMarker: function () { return null; }
         }).on('routesfound', function (e) {
             const route = e.routes[0];
             const distanceKm = route.summary.totalDistance / 1000;
@@ -395,16 +397,29 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
 
             const infoBox = document.getElementById('delivery-info');
             infoBox.style.display = 'block';
-            infoBox.innerHTML = ` Distance (by road): ${distanceKm.toFixed(2)} km —  Estimated delivery: ~${minutes} minutes`;
+            infoBox.innerHTML = ' Distance (by road): ' + distanceKm.toFixed(2) + ' km —  Estimated delivery: ~' + minutes + ' minutes';
         }).on('routingerror', function () {
             const infoBox = document.getElementById('delivery-info');
             infoBox.style.display = 'block';
-            infoBox.innerHTML = ` Could not calculate a road route to this point. Try a nearby location.`;
+            infoBox.innerHTML = ' Could not calculate a road route to this point. Try a nearby location.';
         }).addTo(map);
     }
 
     map.on('click', function (e) {
         updateRoute(e.latlng.lat, e.latlng.lng);
+    });
+
+    // Location search bar — defined AFTER updateRoute so it can call it
+    const geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false,
+        placeholder: "Search for your location...",
+        collapsed: false
+    }).addTo(map);
+
+    geocoder.on('markgeocode', function (e) {
+        const center = e.geocode.center;
+        map.setView(center, 16);
+        updateRoute(center.lat, center.lng);
     });
     <?php endif; ?>
     </script>
