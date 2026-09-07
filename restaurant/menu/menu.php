@@ -40,19 +40,19 @@
                         echo '<td>Rs. ' . htmlspecialchars($row['price']) . '</td>';
 
                         echo '<td>';
-                        echo '<form method="POST" action="view.php">
+                                               echo '<form method="POST" action="view.php">
                                 <input type="hidden" name="menu_item_id" value="' . $row['id'] . '">
-                                <button type="submit" class="btn btn-sm">View</button>
+                                <button type="submit" class="action-btn">View</button>
                               </form>';
 
                         echo '<form method="POST" action="edit.php">
                                 <input type="hidden" name="menu_item_id" value="' . $row['id'] . '">
-                                <button type="submit" class="btn btn-sm">Edit</button>
+                                <button type="submit" class="action-btn">Edit</button>
                               </form>';
 
                         echo '<form method="POST" action="delete.php" onsubmit="return confirm(\'Delete this item?\');">
                                 <input type="hidden" name="menu_item_id" value="' . $row['id'] . '">
-                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                <button type="submit" class="action-btn btn-danger">Remove</button>
                               </form>';
                         echo '</td>';
                         echo '</tr>';

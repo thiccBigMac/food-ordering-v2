@@ -158,6 +158,8 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
     <style>
         html, body {
             overflow-y: auto !important;
@@ -351,41 +353,58 @@ $signature = base64_encode(hash_hmac('sha256', $data, $secret, true));
     }).addTo(map).bindPopup("Restaurant location").openPopup();
 
     let customerMarker;
+    let routingControl;
 
-    // Haversine formula in JavaScript (mirrors the PHP version for instant feedback)
-    function haversineKm(lat1, lon1, lat2, lon2) {
-        const R = 6371;
-        const dLat = (lat2 - lat1) * Math.PI / 180;
-        const dLon = (lon2 - lon1) * Math.PI / 180;
-        const a = Math.sin(dLat / 2) ** 2 +
-                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                  Math.sin(dLon / 2) ** 2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
-    }
-
-    map.on('click', function (e) {
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-
+    // Draws the actual road path from restaurant -> clicked point,
+    // and pulls real road distance/time from the route (instead of straight-line Haversine)
+    function updateRoute(lat, lng) {
         if (customerMarker) {
-            customerMarker.setLatLng(e.latlng);
+            customerMarker.setLatLng([lat, lng]);
         } else {
-            customerMarker = L.marker(e.latlng).addTo(map);
+            customerMarker = L.marker([lat, lng]).addTo(map).bindPopup("Delivery location");
         }
 
         document.getElementById('latitude').value = lat.toFixed(8);
         document.getElementById('longitude').value = lng.toFixed(8);
 
-        const distance = haversineKm(restLat, restLng, lat, lng);
-        const minutes = Math.ceil((distance / 20) * 60 + 10); // 20 km/h avg + 10 min prep buffer
+        // Remove any previous route before drawing a new one
+        if (routingControl) {
+            map.removeControl(routingControl);
+        }
 
-        document.getElementById('distance_km').value = distance.toFixed(2);
-        document.getElementById('estimated_minutes').value = minutes;
+        routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(restLat, restLng),
+                L.latLng(lat, lng)
+            ],
+            routeWhileDragging: false,
+            addWaypoints: false,
+            draggableWaypoints: false,
+            show: false, // hides the turn-by-turn instructions panel
+            lineOptions: {
+                styles: [{ color: '#2E4E50', weight: 5, opacity: 0.8 }]
+            },
+            createMarker: function () { return null; } // we manage our own markers above
+        }).on('routesfound', function (e) {
+            const route = e.routes[0];
+            const distanceKm = route.summary.totalDistance / 1000;
+            const minutes = Math.ceil(route.summary.totalTime / 60) + 10; // +10 min prep buffer
 
-        const infoBox = document.getElementById('delivery-info');
-        infoBox.style.display = 'block';
-        infoBox.innerHTML = ` Distance: ${distance.toFixed(2)} km —  Estimated delivery: ~${minutes} minutes`;
+            document.getElementById('distance_km').value = distanceKm.toFixed(2);
+            document.getElementById('estimated_minutes').value = minutes;
+
+            const infoBox = document.getElementById('delivery-info');
+            infoBox.style.display = 'block';
+            infoBox.innerHTML = ` Distance (by road): ${distanceKm.toFixed(2)} km —  Estimated delivery: ~${minutes} minutes`;
+        }).on('routingerror', function () {
+            const infoBox = document.getElementById('delivery-info');
+            infoBox.style.display = 'block';
+            infoBox.innerHTML = ` Could not calculate a road route to this point. Try a nearby location.`;
+        }).addTo(map);
+    }
+
+    map.on('click', function (e) {
+        updateRoute(e.latlng.lat, e.latlng.lng);
     });
     <?php endif; ?>
     </script>

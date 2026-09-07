@@ -16,7 +16,7 @@
             background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(43,38,32,0.10);
         }
         .feedback-container h2 {
             font-size: 22px;

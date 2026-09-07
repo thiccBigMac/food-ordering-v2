@@ -46,102 +46,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Admin Login — HamroKhaja</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: #1a1917;
-            padding: 15px 40px;
-        }
-        header h1 {
-            color: #dfba73;
-            font-size: 26px;
-            font-weight: 500;
-        }
-        .wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .login-card {
-            background: #fff;
-            padding: 40px 35px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .login-card h2 {
-            font-size: 28px;
-            margin-bottom: 8px;
-            color: #2c3e50;
-        }
-        .login-card p.subtitle {
-            font-size: 13px;
-            color: #999;
-            margin-bottom: 28px;
-        }
-        .form-group { margin-bottom: 16px; text-align: left; }
-        input {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 7px;
-            font-size: 15px;
-            color: #333;
-            transition: border-color 0.2s;
-        }
-        input:focus { border-color: #2E4E50; outline: none; }
-        input::placeholder { color: #aaa; }
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: #1a1917;
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 6px;
-            transition: background 0.2s;
-        }
-        .btn:hover { background: #333; }
-        .error-msg {
-            color: #c0392b;
-            background: #fff5f5;
-            padding: 10px 14px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-            font-size: 14px;
-            border: 1px solid #fca5a5;
-        }
-        .badge {
-            display: inline-block;
-            background: #2E4E50;
-            color: white;
-            font-size: 11px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-        footer {
-            background-color: #2E4E50;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 20px;
-            font-size: 13px;
-        }
-    </style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Work Sans', sans-serif; }
+    body {
+        background-color: #FBF7EF;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    header {
+        background: linear-gradient(135deg, #1E3A3A, #2E4E50);
+        padding: 18px 40px;
+    }
+    header h1 {
+        font-family: 'Fraunces', serif;
+        color: #F0C674;
+        font-size: 26px;
+        font-weight: 600;
+    }
+    .wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .login-card {
+        background: #fff;
+        padding: 44px 38px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(43,38,32,0.12);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+    .login-card h2 { font-family: 'Fraunces', serif; font-size: 28px; margin-bottom: 8px; color: #2E4E50; }
+    .login-card p.subtitle { font-size: 13px; color: #6B6355; margin-bottom: 28px; }
+    .form-group { margin-bottom: 16px; text-align: left; }
+    input {
+        width: 100%; padding: 13px 16px; border: 1.5px solid #e6ddc9;
+        border-radius: 8px; font-size: 15px; color: #2B2620;
+        background: #FBF7EF; transition: border-color 0.2s;
+    }
+    input:focus { border-color: #D9A441; outline: none; }
+    input::placeholder { color: #b0a690; }
+    .btn {
+        width: 100%; padding: 14px; background: #2E4E50; border: none;
+        border-radius: 50px; color: white; font-size: 15px; font-weight: 600;
+        cursor: pointer; margin-top: 6px; transition: background 0.2s;
+    }
+    .btn:hover { background: #D9A441; color: #2B2620; }
+    .error-msg { color: #C0605A; background: #fbeceb; padding: 10px 14px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; border: 1px solid #eac2c0; }
+    .badge { display: inline-block; background: #D9A441; color: #2B2620; font-size: 11px; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.5px; font-weight: 600; }
+    footer { background-color: #1E3A3A; color: #ecf0f1; text-align: center; padding: 20px; font-size: 13px; }
+</style>
 </head>
 <body>
 

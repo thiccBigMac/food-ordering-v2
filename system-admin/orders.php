@@ -11,26 +11,12 @@ require_once('../db/connection.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders</title>
+    <title>...</title>
+    <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: #f4f4f4; }
-        .sidebar { width: 250px; background-color: #222; color: #ecf0f1; padding: 20px; min-height: 100vh; }
-        .sidebar .logo { font-size: 26px; font-family: 'Lucida Sans', Geneva, Verdana, sans-serif; color: #DFD0B8; text-decoration: none; display: block; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #333; }
-        .sidebar a { display: block; color: #bdc3c7; text-decoration: none; padding: 15px 0; border-bottom: 1px solid black; }
-        .sidebar a:hover { opacity: 0.5; }
-        .main-content { flex: 1; display: flex; flex-direction: column; }
-        .topbar { background-color: #2E4E50; color: white; padding: 15px 20px; font-size: 25px; font-weight: bold; }
-        .content { padding: 20px; }
-        .menu-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .menu-table th, .menu-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
-        .menu-table th { background-color: #2E4E50; color: white; }
-        .menu-table tr:hover { background-color: #f5f5f5; }
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-        .badge.pending { background: #fff3cd; color: #856404; }
-        .badge.completed { background: #d1e7dd; color: #0f5132; }
-        .badge.cancelled { background: #f8d7da; color: #842029; }
-        .badge.processing { background: #cfe2ff; color: #084298; }
+        .delete-btn { background-color: #C0605A; color: white; border: none; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: background-color 0.2s ease; }
+        .delete-btn:hover { background-color: #a94a45; }
+        .success { color: #5C8A66; margin-bottom: 15px; font-weight: 600; background: #eef4ec; padding: 10px 14px; border-radius: 8px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -41,6 +27,7 @@ require_once('../db/connection.php');
     <a href="restaurants.php">Restaurants</a>
     <a href="users.php">Users</a>
     <a href="orders.php">Orders</a>
+    <a href="feedback.php">Feedback</a>
     <a href="logout.php">Logout</a>
 </div>
 

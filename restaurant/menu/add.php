@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Add Menu</title>
   <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet" />
-  <style>
-    /* Reset some default styles */
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
+      font-family: 'Work Sans', 'Segoe UI', sans-serif;
+      background-color: #FBF7EF;
       margin: 0;
       padding: 0;
       display: flex;
@@ -21,26 +22,29 @@
     .main-content {
       background: white;
       margin: 40px auto;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 34px 40px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(43,38,32,0.12);
       max-width: 450px;
       width: 100%;
     }
 
     .topbar {
+      font-family: 'Fraunces', Georgia, serif;
       font-size: 28px;
       font-weight: 700;
-      color: #333;
+      color: #ffffff;
+      background: #2E4E50;
       margin-bottom: 20px;
       text-align: center;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     form h1 {
-      margin-bottom: 30px;
+      font-family: 'Fraunces', Georgia, serif;
+      margin-bottom: 26px;
       font-weight: 700;
-      color: #222;
+      color: #2E4E50;
       text-align: center;
     }
 
@@ -53,41 +57,45 @@
     form .input-box label {
       font-weight: 600;
       margin-bottom: 8px;
-      color: #555;
+      color: #6B6355;
+      font-size: 14px;
     }
 
     form .input-box input[type="text"],
     form .input-box input[type="file"] {
       padding: 12px 15px;
-      font-size: 16px;
-      border: 1.5px solid #ccc;
-      border-radius: 6px;
-      transition: border-color 0.3s ease;
+      font-size: 15px;
+      color: #2B2620;
+      background-color: #FBF7EF;
+      border: 1.5px solid #e6ddc9;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       outline: none;
     }
 
     form .input-box input[type="text"]:focus,
     form .input-box input[type="file"]:focus {
-      border-color: #09ff00ff;
-      box-shadow: 0 0 6px rgba(0,123,255,0.3);
+      border-color: #D9A441;
+      box-shadow: 0 0 6px rgba(217,164,65,0.35);
     }
 
     .btn {
       width: 100%;
       padding: 14px 0;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      color: white;
-      background-color: #007BFF;
+      color: #2B2620;
+      background-color: #D9A441;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.25s ease;
-      letter-spacing: 0.05em;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      letter-spacing: 0.03em;
     }
 
     .btn:hover {
-      background-color: #0056b3;
+      background-color: #2E4E50;
+      color: white;
     }
   </style>
 </head>

@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Loyalty Discount</title>
     <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet" />
-    <style>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+        .content h3 {
+            font-family: 'Fraunces', Georgia, serif;
+            color: #2E4E50;
+            margin-bottom: 14px;
+        }
+
         form {
             font-size: 14px;
             max-width: 400px;
@@ -14,47 +22,58 @@
             font-weight: 600;
             margin-bottom: 6px;
             display: block;
-            color: #444;
+            color: #6B6355;
         }
         form input[type="number"] {
             font-size: 14px;
-            padding: 8px 10px;
-            margin-bottom: 12px;
-            border: 1.5px solid #ccc;
-            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            color: #2B2620;
+            background-color: #FBF7EF;
+            border: 1.5px solid #e6ddc9;
+            border-radius: 8px;
             outline: none;
             width: 100%;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         form input[type="number"]:focus {
-            border-color: #2E4E50;
-            box-shadow: 0 0 6px rgba(46, 78, 80, 0.3);
+            border-color: #D9A441;
+            box-shadow: 0 0 6px rgba(217, 164, 65, 0.35);
         }
         form button[type="submit"] {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
-            padding: 10px 0;
-            background-color: #2E4E50;
-            color: white;
+            padding: 12px 0;
+            background-color: #D9A441;
+            color: #2B2620;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
         form button[type="submit"]:hover {
-            background-color: #1f3a3b;
+            background-color: #2E4E50;
+            color: white;
         }
         .message {
             font-weight: 600;
             margin-bottom: 15px;
             font-size: 14px;
-        }
-        .message.success { color: green; }
-        .message.error { color: #d9534f; }
-        .current-rule {
-            background: #f4f4f4;
-            padding: 15px;
+            padding: 10px 14px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .message.success { color: #3d6b47; background: #eaf4ec; }
+        .message.error { color: #a94a45; background: #fbeceb; }
+        .current-rule {
+            background: #F3ECDD;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            font-size: 14px;
+            color: #2B2620;
+            border-left: 4px solid #D9A441;
         }
     </style>
 </head>
@@ -138,7 +157,7 @@
 
             <?php if ($rule && $rule['active']): ?>
                 <form method="POST" style="margin-top: 10px;">
-                    <button type="submit" name="disable_rule" style="background-color:#e57373;" class="btn">Disable Rule</button>
+                    <button type="submit" name="disable_rule" style="background-color:#C0605A;" class="btn">Disable Rule</button>
                 </form>
             <?php endif; ?>
         </div>

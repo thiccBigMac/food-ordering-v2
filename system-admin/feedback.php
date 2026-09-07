@@ -18,16 +18,37 @@ $result = $conn->query("
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Feedback — System Admin</title>
-    <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+        <link href="/food-ordering/restaurant/styles/style.css" rel="stylesheet">
     <style>
-        .data-table { width: 100%; border-collapse: collapse; background: white;
-            border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
-        .data-table th { background: #2E4E50; color: white; padding: 13px 15px; text-align: left; font-size: 14px; }
-        .data-table td { padding: 12px 15px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #333; }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(43,38,32,0.12);
+        }
+        .data-table th {
+            background: #2E4E50;
+            color: white;
+            padding: 13px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .data-table td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #f0e9d8;
+            font-size: 14px;
+            color: #2B2620;
+        }
         .data-table tr:last-child td { border-bottom: none; }
-        .data-table tr:hover td { background: #f9f9f9; }
+        .data-table tr:hover td { background: #F3ECDD; }
     </style>
 </head>
 <body>

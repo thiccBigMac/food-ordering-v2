@@ -54,7 +54,7 @@ if (isset($_GET['dismiss']) && isset($_SESSION['user_id'])) {
             border-radius: 8px;
             padding: 18px 20px;
             margin-bottom: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+            box-shadow: 0 8px 24px rgba(43,38,32,0.10);
         }
 
         .notif-card.unread {

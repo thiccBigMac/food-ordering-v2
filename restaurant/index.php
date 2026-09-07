@@ -125,8 +125,8 @@ $stmt->close();
     }
     .dashboard-card {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(43,38,32,0.12);
       padding: 30px 20px;
       text-align: center;
       cursor: pointer;
@@ -137,17 +137,18 @@ $stmt->close();
     }
     .dashboard-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 14px 34px rgba(43,38,32,0.18);
     }
     .dashboard-card h2 {
+      font-family: 'Fraunces', Georgia, serif;
       font-size: 3rem;
       margin-bottom: 8px;
       color: #2E4E50;
     }
     .dashboard-card p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      color: #333;
+      color: #6B6355;
     }
 
     .charts-wrapper {
@@ -158,13 +159,14 @@ $stmt->close();
     }
     .chart-card {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(43,38,32,0.12);
+      padding: 22px;
     }
     .chart-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
       color: #2E4E50;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 15px;
     }
     .chart-card canvas {
@@ -236,7 +238,7 @@ $stmt->close();
 
   <script>
     // Revenue Trend Chart
-    new Chart(document.getElementById('revenueChart'), {
+        new Chart(document.getElementById('revenueChart'), {
         type: 'line',
         data: {
             labels: <?php echo json_encode($revenueLabels); ?>,
@@ -247,7 +249,7 @@ $stmt->close();
                 backgroundColor: 'rgba(46, 78, 80, 0.1)',
                 fill: true,
                 tension: 0.3,
-                pointBackgroundColor: '#2E4E50',
+                pointBackgroundColor: '#D9A441',
                 pointRadius: 4
             }]
         },
